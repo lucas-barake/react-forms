@@ -30,11 +30,12 @@ const StepTwo: React.FC<Props> = ({ formValues, setFormValues, setStep }) => {
   });
 
   function handleSubmit(data: MultiStepFormSchema["stepThree"]) {
-    setFormValues((prev) => ({
-      ...prev,
+    const newData = {
+      ...formValues,
       stepThree: data,
-    }));
-    window.alert(JSON.stringify(formValues, null, 2));
+    };
+    setFormValues(newData);
+    window.alert(JSON.stringify(newData, null, 2));
   }
 
   return (

@@ -44,19 +44,32 @@ const BasicFormPage: NextPage = () => {
       <Form onSubmit={form.handleSubmit(handleSubmit)}>
         <Label>
           Username
-          <Input {...form.register("username")} required />
+          <Input
+            {...form.register("username")}
+            required
+            placeholder="Username"
+          />
           <FieldError message={form.formState.errors.username?.message} />
         </Label>
 
         <Label>
           Password
-          <Input {...form.register("password")} required />
+          <Input
+            {...form.register("password")}
+            required
+            type="password"
+            placeholder="Password"
+          />
           <FieldError message={form.formState.errors.password?.message} />
         </Label>
 
         <Label>
           Email
-          <Input {...form.register("email")} required />
+          <Input
+            {...form.register("email")}
+            required
+            placeholder="example@domain.com"
+          />
           <FieldError message={form.formState.errors.email?.message} />
         </Label>
 
