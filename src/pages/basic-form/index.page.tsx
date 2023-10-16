@@ -8,6 +8,9 @@ import { Label } from "$/components/ui/label";
 import { Button } from "$/components/ui/button";
 import { FieldError } from "$/components/ui/field-error";
 import { Main } from "$/components/ui/main";
+import { useToast } from "$/components/ui/use-toast";
+import { Code } from "$/components/ui/code";
+import React from "react";
 
 const schema = z.object({
   username: z
@@ -23,6 +26,7 @@ const schema = z.object({
 type Schema = z.infer<typeof schema>;
 
 const BasicFormPage: NextPage = () => {
+  const toast = useToast();
   const form = useForm<Schema>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -35,7 +39,10 @@ const BasicFormPage: NextPage = () => {
   });
 
   function handleSubmit(data: Schema) {
-    window.alert(JSON.stringify(data, null, 2));
+    toast.toast({
+      title: "Success",
+      description: <Code object={data} />,
+    });
   }
 
   return (

@@ -10,6 +10,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import React from "react";
 import { cn } from "$/utils/cn";
 import { Main } from "$/components/ui/main";
+import { useToast } from "$/components/ui/use-toast";
+import { Code } from "$/components/ui/code";
 
 const atLeastOneLowerCaseLetter = z.string().regex(/[a-z]/);
 const atLeastOneUpperCaseLetter = z.string().regex(/[A-Z]/);
@@ -52,12 +54,16 @@ const schema = z.object({
 type Schema = z.infer<typeof schema>;
 
 const PasswordValidation: NextPage = () => {
+  const toast = useToast();
   const form = useForm<Schema>({
     resolver: zodResolver(schema),
   });
 
   function handleSubmit(data: Schema) {
-    window.alert(JSON.stringify(data, null, 2));
+    toast.toast({
+      title: "Success",
+      description: <Code object={data} />,
+    });
   }
 
   return (
